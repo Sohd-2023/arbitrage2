@@ -16,3 +16,26 @@ def adjust_for_slippage(amount, slippage_percent):
     return amount * (1 - slippage_percent / 100)
 
 def estimate_gas_costs(tx_complexity
+
+                      from decimal import Decimal
+
+class ArbitrageCalculator:
+    def __init__(self):
+        self.aave_fee = Decimal('0.0009')  # 0.09%
+        self.slippage_tolerance = Decimal('0.005')  # 0.5%
+
+    def calculate_net_profit(self, buy_price, sell_price, amount):
+        gross_profit = (sell_price - buy_price) * amount
+        fees = self._calculate_fees(amount)
+        return gross_profit - fees
+
+    def _calculate_fees(self, amount):
+        return (
+            amount * self.aave_fee +
+            amount * self.slippage_tolerance +
+            self._estimate_gas_cost()
+        )
+
+    def _estimate_gas_cost(self):
+        # Current mainnet average gas price
+        return Decimal('0.05')  # $0.05 equivalent 
