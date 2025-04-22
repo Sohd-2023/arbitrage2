@@ -1,0 +1,11 @@
+arbitrage-bot/
+├── contracts/               # Solidity smart contracts
+│   └── FlashLoanArbitrage.sol
+├── searcher/                # Opportunity finder
+│   ├── monitor.py           # Price monitor
+│   └── calculator.py        # Profit calculator
+├── executor/                # Transaction executor
+│   ├── builder.js           # Transaction builder
+│   └── sender.js            # Flash loan initiator
+├── config.json              # Configuration file
+└── package.json             # Node.js dependencies
